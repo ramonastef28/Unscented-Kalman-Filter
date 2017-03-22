@@ -57,9 +57,33 @@ include CMakeFiles/UnscentedKF.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/UnscentedKF.dir/flags.make
 
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.o: CMakeFiles/UnscentedKF.dir/flags.make
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.o: ../src/tools.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/UnscentedKF.dir/src/tools.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/UnscentedKF.dir/src/tools.cpp.o -c /Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/src/tools.cpp
+
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/UnscentedKF.dir/src/tools.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/src/tools.cpp > CMakeFiles/UnscentedKF.dir/src/tools.cpp.i
+
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/UnscentedKF.dir/src/tools.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/src/tools.cpp -o CMakeFiles/UnscentedKF.dir/src/tools.cpp.s
+
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.requires:
+
+.PHONY : CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.requires
+
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.provides: CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.requires
+	$(MAKE) -f CMakeFiles/UnscentedKF.dir/build.make CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.provides.build
+.PHONY : CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.provides
+
+CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.provides.build: CMakeFiles/UnscentedKF.dir/src/tools.cpp.o
+
+
 CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o: CMakeFiles/UnscentedKF.dir/flags.make
 CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o: ../src/ukf.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o -c /Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/src/ukf.cpp
 
 CMakeFiles/UnscentedKF.dir/src/ukf.cpp.i: cmake_force
@@ -83,7 +107,7 @@ CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o.provides.build: CMakeFiles/UnscentedKF.
 
 CMakeFiles/UnscentedKF.dir/src/main.cpp.o: CMakeFiles/UnscentedKF.dir/flags.make
 CMakeFiles/UnscentedKF.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/UnscentedKF.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/UnscentedKF.dir/src/main.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/UnscentedKF.dir/src/main.cpp.o -c /Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/src/main.cpp
 
 CMakeFiles/UnscentedKF.dir/src/main.cpp.i: cmake_force
@@ -107,17 +131,19 @@ CMakeFiles/UnscentedKF.dir/src/main.cpp.o.provides.build: CMakeFiles/UnscentedKF
 
 # Object files for target UnscentedKF
 UnscentedKF_OBJECTS = \
+"CMakeFiles/UnscentedKF.dir/src/tools.cpp.o" \
 "CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o" \
 "CMakeFiles/UnscentedKF.dir/src/main.cpp.o"
 
 # External object files for target UnscentedKF
 UnscentedKF_EXTERNAL_OBJECTS =
 
+UnscentedKF: CMakeFiles/UnscentedKF.dir/src/tools.cpp.o
 UnscentedKF: CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o
 UnscentedKF: CMakeFiles/UnscentedKF.dir/src/main.cpp.o
 UnscentedKF: CMakeFiles/UnscentedKF.dir/build.make
 UnscentedKF: CMakeFiles/UnscentedKF.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable UnscentedKF"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ramona/Documents/Udacity_ND/SelfDrivingCars/term2/Proj2/UnscentedKF/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable UnscentedKF"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/UnscentedKF.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,6 +151,7 @@ CMakeFiles/UnscentedKF.dir/build: UnscentedKF
 
 .PHONY : CMakeFiles/UnscentedKF.dir/build
 
+CMakeFiles/UnscentedKF.dir/requires: CMakeFiles/UnscentedKF.dir/src/tools.cpp.o.requires
 CMakeFiles/UnscentedKF.dir/requires: CMakeFiles/UnscentedKF.dir/src/ukf.cpp.o.requires
 CMakeFiles/UnscentedKF.dir/requires: CMakeFiles/UnscentedKF.dir/src/main.cpp.o.requires
 

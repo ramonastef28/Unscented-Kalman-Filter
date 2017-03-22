@@ -150,6 +150,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/UnscentedKF.dir/build.make CMakeFiles/UnscentedKF.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/tools.o: src/tools.cpp.o
+
+.PHONY : src/tools.o
+
+# target to build an object file
+src/tools.cpp.o:
+	$(MAKE) -f CMakeFiles/UnscentedKF.dir/build.make CMakeFiles/UnscentedKF.dir/src/tools.cpp.o
+.PHONY : src/tools.cpp.o
+
+src/tools.i: src/tools.cpp.i
+
+.PHONY : src/tools.i
+
+# target to preprocess a source file
+src/tools.cpp.i:
+	$(MAKE) -f CMakeFiles/UnscentedKF.dir/build.make CMakeFiles/UnscentedKF.dir/src/tools.cpp.i
+.PHONY : src/tools.cpp.i
+
+src/tools.s: src/tools.cpp.s
+
+.PHONY : src/tools.s
+
+# target to generate assembly for a file
+src/tools.cpp.s:
+	$(MAKE) -f CMakeFiles/UnscentedKF.dir/build.make CMakeFiles/UnscentedKF.dir/src/tools.cpp.s
+.PHONY : src/tools.cpp.s
+
 src/ukf.o: src/ukf.cpp.o
 
 .PHONY : src/ukf.o
@@ -189,6 +216,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/tools.o"
+	@echo "... src/tools.i"
+	@echo "... src/tools.s"
 	@echo "... src/ukf.o"
 	@echo "... src/ukf.i"
 	@echo "... src/ukf.s"

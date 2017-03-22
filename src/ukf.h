@@ -27,7 +27,9 @@ public:
 
   ///* predicted sigma points matrix
   MatrixXd Xsig_pred_;
-
+  
+  MatrixXd Zsig_;
+  
   ///* time when the state is true, in us
   long time_us_;
 
@@ -60,6 +62,12 @@ public:
 
   ///* Augmented state dimension
   int n_aug_;
+ 
+  ///* Measurement state dimension
+  int n_z_;
+   
+  VectorXd z_pred_;
+  MatrixXd S_;
 
   ///* Sigma point spreading parameter
   double lambda_;
@@ -90,8 +98,8 @@ public:
    * Prediction Predicts sigma points, the state, and the state covariance
    * matrix
    * @param delta_t Time between k and k+1 in s
-   */
-  void Prediction(double delta_t);
+   */ 
+ void Prediction(double delta_t);
 
   /**
    * Updates the state and the state covariance matrix using a laser measurement
@@ -103,6 +111,7 @@ public:
    * Updates the state and the state covariance matrix using a radar measurement
    * @param meas_package The measurement at k+1
    */
+  void PredictRadarMeasurement();
   void UpdateRadar(MeasurementPackage meas_package);
 };
 
