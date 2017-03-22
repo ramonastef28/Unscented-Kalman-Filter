@@ -87,7 +87,7 @@ public:
    * Destructor
    */
   virtual ~UKF();
-
+  bool Initialization(MeasurementPackage meas_package);
   /**
    * ProcessMeasurement
    * @param meas_package The latest measurement data of either radar or laser

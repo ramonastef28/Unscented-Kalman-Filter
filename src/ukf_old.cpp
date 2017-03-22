@@ -76,53 +76,6 @@ UKF::~UKF() {}
  * @param {MeasurementPackage} meas_package The latest measurement data of
  * either radar or laser.
  */
-bool UKF::Initialization(MeasurementPackage meas_package) {
-   float px = 0;
-   float py = 0;
-   float vel = 0;
-   float yaw_angle = 0;
-   float yaw_rate = 0;
-    x_ << px, py, vel, yaw_angle, yaw_rate;
-    z_pred_.fill(0.0);
-    S_.fill(0.0);
-    Zsig_.fill(0.0);
-    if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
-          float rho = meas_package.raw_measurements_[0];
-          float phi = meas_package.raw_measurements_[1];
-          float rho_dot = meas_package.raw_measurements_[2];
-	  px = rho*cos(phi);
-          py = rho*sin(phi);
-	  vel = fabs(rho_dot);
-	  yaw_angle = atan(phi);
-          x_ << px, py, vel, yaw_angle, 0;
-          P_ <<  1, 0, 0, 0, 0,
-                 0, 1, 0, 0, 0,
-                 0, 0, 2, 0, 0,
-                 0, 0, 0, 2, 0,
-                 0, 0, 0, 0, 1000;
-        }
-        else if (meas_package.sensor_type_ == MeasurementPackage::LASER){
-           px = meas_package.raw_measurements_[0];
-           py = meas_package.raw_measurements_[1];
-	   x_ << px, py, 0, 0, 0;
-           P_ << 1, 0, 0, 0, 0,
-                 0, 1, 0, 0, 0,
-                 0, 0, 1000, 0, 0,
-                 0, 0, 0, 1000, 0,
-                 0, 0, 0, 0, 1000;
-         }
-  time_us_ = meas_package.timestamp_;
-
-  // done initializing, no need to predict or update
-  if(px == 0){
-       //will start true kalman state initialization till records whose px is not zero arrives
-        return false;
-  }else{
-        return true;
-        }
-}
-
-
 void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
   /**
   TODO:
@@ -131,17 +84,39 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
   measurements.
   */
   if (!is_initialized_){
-	if(Initialization(meas_package)){
-                        is_initialized_ = true;
-              }
-         return;
-  }
- 
+    cout << "UKF: " << endl;
+    x_ << 0, 0, 0, 0, 0;
+    z_pred_.fill(0.0);
+    S_.fill(0.0);
+    Zsig_.fill(0.0); 
+    if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
+       	  float rho = meas_package.raw_measurements_[0];
+	  float phi = meas_package.raw_measurements_[1];
+	  float rho_dot = meas_package.raw_measurements_[2];
+	  x_ << rho*cos(phi), rho*sin(phi), rho_dot, phi, 0;
+	  P_ <<  1, 0, 0, 0, 0, 
+	 	 0, 1, 0, 0, 0,
+		 0, 0, 2, 0, 0,
+		 0, 0, 0, 2, 0,
+		 0, 0, 0, 0, 1000;			 
+	}
+	else if (meas_package.sensor_type_ == MeasurementPackage::LASER){
+	   x_ << meas_package.raw_measurements_[0], meas_package.raw_measurements_[1], 0, 0, 0;
+           P_ << 1, 0, 0, 0, 0,
+	         0, 1, 0, 0, 0,
+	         0, 0, 1000, 0, 0,
+                 0, 0, 0, 1000, 0,
+                 0, 0, 0, 0, 1000;
+	 }
+  time_us_ = meas_package.timestamp_;
+  is_initialized_ = true;
+  cout << "time" << time_us_ << endl;
+  } 
  
  float dt = (meas_package.timestamp_ - time_us_) / 1000000.0;
+ Prediction(dt);
  time_us_ = meas_package.timestamp_; 
- Prediction(dt); 
-
+ 
   //perform update step
   if (meas_package.sensor_type_ == MeasurementPackage::RADAR) {
 	PredictRadarMeasurement();
