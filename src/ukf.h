@@ -114,7 +114,7 @@ public:
   void PredictRadarMeasurement();
   void UpdateRadar(MeasurementPackage meas_package);
   void Normalization(double &angle);
-
+  double ComputeNIS(const VectorXd &z_pred, const MatrixXd &S, const VectorXd &z);
 };
 
 #endif /* UKF_H */

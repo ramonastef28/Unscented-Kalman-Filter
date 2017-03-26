@@ -116,16 +116,14 @@ int main(int argc, char* argv[]) {
     // read ground truth data to compare later
     float x_gt;
     float y_gt;
-    float v_gt;
-    float yaw_gt;
-    float yawd_gt;
+    float vx_gt;
+    float vy_gt;
     iss >> x_gt;
     iss >> y_gt;
-    iss >> v_gt;
-    iss >> yaw_gt;
-    iss >> yawd_gt;
-    gt_package.gt_values_ = VectorXd(5);
-    gt_package.gt_values_ << x_gt, y_gt, v_gt, yaw_gt, yawd_gt;
+    iss >> vx_gt;
+    iss >> vy_gt;
+    gt_package.gt_values_ = VectorXd(4);
+    gt_package.gt_values_ << x_gt, y_gt, vx_gt, vy_gt;
     gt_pack_list.push_back(gt_package);
   }
 
@@ -151,6 +149,14 @@ int main(int argc, char* argv[]) {
     out_file_ << ukf.x_(3) << "\t"; // yaw_angle -est
     out_file_ << ukf.x_(4) << "\t"; // yaw_rate -est
 
+
+    //output indirect vx,xy estimation
+    double v  = ukf.x_(2);
+    double yaw_angle = ukf.x_(3);
+
+    double vx = cos(yaw_angle)*v;
+    double vy = sin(yaw_angle)*v;
+
     // output the measurements
     if (measurement_pack_list[k].sensor_type_ == MeasurementPackage::LASER) {
       // output the estimation
@@ -160,12 +166,17 @@ int main(int argc, char* argv[]) {
 
       // p2 - meas
       out_file_ << measurement_pack_list[k].raw_measurements_(1) << "\t";
+
+      //NIS
+      out_file_ << ukf.NIS_laser_ << "\t";
     } else if (measurement_pack_list[k].sensor_type_ == MeasurementPackage::RADAR) {
       // output the estimation in the cartesian coordinates
       float ro = measurement_pack_list[k].raw_measurements_(0);
       float phi = measurement_pack_list[k].raw_measurements_(1);
       out_file_ << ro * cos(phi) << "\t"; // p1_meas
       out_file_ << ro * sin(phi) << "\t"; // p2_meas
+      //NIS
+     out_file_ << ukf.NIS_radar_ << "\t";
     }
 
     // output the ground truth packages
@@ -173,9 +184,15 @@ int main(int argc, char* argv[]) {
     out_file_ << gt_pack_list[k].gt_values_(1) << "\t";
     out_file_ << gt_pack_list[k].gt_values_(2) << "\t";
     out_file_ << gt_pack_list[k].gt_values_(3) << "\t";
-    out_file_ << gt_pack_list[k].gt_values_(4) << "\n";
-    estimations.push_back(ukf.x_);
-    ground_truth.push_back(gt_pack_list[k].gt_values_);
+    
+    VectorXd estimation_item(4);
+    estimation_item << ukf.x_(0), ukf.x_(1), vx, vy;
+    VectorXd ground_truth_item(4);
+
+    ground_truth_item << gt_pack_list[k].gt_values_;
+    estimations.push_back(estimation_item);
+    ground_truth.push_back(ground_truth_item);
+  
     out_file_ << "\n";
   }
 
